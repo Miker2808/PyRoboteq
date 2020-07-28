@@ -1,17 +1,15 @@
-import serial
+from roboteq_handler import RoboteqHandler
 import time
 
-device = serial.Serial("COM9", 115200)
-print(device.name)
-
-device.close()
-device.open()
+controller = RoboteqHandler()
+controller.connect("COM9")
 
 if __name__ == "__main__":
     while True:
         time.sleep(0.1)
-        message_raw = "!M 100 100\r"
-        #message = message_raw.encode()
-        device.write(message_raw.encode())
+        controller.dual_motor_control(100, 100)
+
+        
+        
 
         
