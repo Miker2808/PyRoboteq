@@ -31,9 +31,9 @@ class RoboteqHandler:
             self.is_alive = True
 
         except Exception as e:
-            print("ERROR: Failed to connect to the roboteq device, read the exception error below..")
-            print("\n")
+            print("ERROR: Failed to connect to the roboteq device, read the exception error below..\n")
             print(e)
+            print("\n\n")
             self.is_alive = False
         
         return self.is_alive
@@ -50,9 +50,9 @@ class RoboteqHandler:
         try:
             self.ser.write(raw_command.encode())
         except Exception as e:
-            print("Failed to send command to the controller, read the exception error below..")
-            print("\n")
+            print("Failed to send command to the controller, read the exception error below..\n")
             print(e)
+            print("\n\n")
     
     def send_raw_command(self, command: str = "", first_argument: str = "", second_argument: str = "") -> None:
         """
@@ -74,8 +74,7 @@ class RoboteqHandler:
         try:
             self.ser.write(raw_command.encode())
         except Exception as e:
-            print("Failed to send command to the controller, read the exception error below..")
-            print("\n")
+            print("Failed to send command to the controller, read the exception error below..\n")
             print(e)
-            
+            print("\n\n")
     
