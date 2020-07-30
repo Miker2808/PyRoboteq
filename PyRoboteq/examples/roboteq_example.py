@@ -7,21 +7,21 @@ controller = RoboteqHandler()
 connected = controller.connect("COM9") # Insert your COM port (for windows)
 
 if __name__ == "__main__":
-    drive = [100, 100]
+    drive_speed = 200
+
     while connected:
         #time.sleep(0.1)
         
         if keyboard.is_pressed('s'):
             print("S pressed")
-            drive = [0, 0]
+            drive_speed = 200
             
         if keyboard.is_pressed('d'):
             print("D pressed")
-            drive = [100, 100]
+            drive_speed = 200
 
         
-        controller.send_raw_command(cmds.DUAL_DRIVE, drive[0], drive[1])
-
+        controller.send_raw_command(cmds.DUAL_DRIVE, drive_speed, drive_speed)
         
             
             
