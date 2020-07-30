@@ -1,8 +1,8 @@
-import PyRoboteq
+from PyRoboteq import RoboteqHandler
 import time
 
 controller = RoboteqHandler()
-connected = controller.connect("COM9")
+connected = controller.connect("COM9") # Insert your COM port (for windows)
 
 if __name__ == "__main__":
     while connected:
