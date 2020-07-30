@@ -46,7 +46,7 @@ class RoboteqHandler:
         left_motor: integer from -1000 to 1000
         right_motor: integer from -1000 to 1000
         """
-        raw_command = "!M " + str(left_motor) + " " + str(right_motor) + "\r"
+        raw_command = "!M " + str(left_motor) + " " + str(right_motor) + " +\r"
         try:
             self.ser.write(raw_command.encode())
         except Exception as e:
@@ -61,9 +61,9 @@ class RoboteqHandler:
         how many arguments you need to use, those you dont need, just leave blank
         """
         
-        raw_command_0 = f"{command} {first_argument} {second_argument}\r"
-        raw_command_1 = f"{command} {first_argument}\r"
-        raw_command_2 = f"{command}\r"
+        raw_command_0 = f"{command} {first_argument} {second_argument} +\r"
+        raw_command_1 = f"{command} {first_argument} +\r"
+        raw_command_2 = f"{command} +\r"
         if first_argument == "" and second_argument == "":
             raw_command = raw_command_2
         elif first_argument is not "" and second_argument == "":
