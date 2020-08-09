@@ -54,9 +54,9 @@ class RoboteqHandler:
             print(e)
             print("\n\n")
     
-    def send_raw_command(self, command: str = "", first_argument: str = "", second_argument: str = "") -> None:
+    def send_param_command(self, command: str = "", first_argument: str = "", second_argument: str = "") -> None:
         """
-        Send raw commands, this is the default method, using the roboteq_commands list you can choose a command
+        Send parameter based commands, this is the default method, using the roboteq_commands list you can choose a command
         and write its arguments, at max there are just 2 arguments, using the manual, find out
         how many arguments you need to use, those you dont need, just leave blank
         """
@@ -77,4 +77,18 @@ class RoboteqHandler:
             print("Failed to send command to the controller, read the exception error below..\n")
             print(e)
             print("\n\n")
-    
+
+    def send_raw_command(self, str_command: str = "") -> None:
+        """
+        Send a raw string command, the library will handle sending the command, but how you write it
+        is up to you.
+        """
+        raw_command = f"{str_command} +\r"
+        
+        try:
+            self.ser.write(raw_command.encode())
+        except Exception as e:
+            print("Failed to send command to the controller, read the exception error below..\n")
+            print(e)
+            print("\n\n")
+        
