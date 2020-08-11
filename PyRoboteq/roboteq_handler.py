@@ -1,5 +1,5 @@
 import serial
-
+import time
 class RoboteqHandler:
     """
     Create a roboteq device object for communication, read the README for more information
@@ -46,7 +46,7 @@ class RoboteqHandler:
         left_motor: integer from -1000 to 1000
         right_motor: integer from -1000 to 1000
         """
-        raw_command = "!M " + str(left_motor) + " " + str(right_motor) + " +\r"
+        raw_command = "!M " + str(left_motor) + " " + str(right_motor) + "+\r"
         try:
             self.ser.write(raw_command.encode())
         except Exception as e:
@@ -61,9 +61,9 @@ class RoboteqHandler:
         how many arguments you need to use, those you dont need, just leave blank
         """
         
-        raw_command_0 = f"{command} {first_argument} {second_argument} +\r"
-        raw_command_1 = f"{command} {first_argument} +\r"
-        raw_command_2 = f"{command} +\r"
+        raw_command_0 = f"{command} {first_argument} {second_argument}+\r"
+        raw_command_1 = f"{command} {first_argument}+\r"
+        raw_command_2 = f"{command}+\r"
         if first_argument == "" and second_argument == "":
             raw_command = raw_command_2
         elif first_argument is not "" and second_argument == "":
@@ -83,8 +83,7 @@ class RoboteqHandler:
         Send a raw string command, the library will handle sending the command, but how you write it
         is up to you.
         """
-        raw_command = f"{str_command} +\r"
-        
+        raw_command = f"{str_command}+\r"
         try:
             self.ser.write(raw_command.encode())
         except Exception as e:
@@ -98,12 +97,16 @@ class RoboteqHandler:
         Reads value from the controller
         """
         def get_data(serial):
-            data = ""
-            while serial.inWaiting() > 0:
-                data += str(serial.read())
-            return data
-        
-        get_data(self.ser)
-        self.send_param_command(command, argument)
+            raw_data = b''
+            in_buffer = serial.inWaiting()
+            print(in_buffer)
+            while raw_data == b'':
+                raw_data = serial.read_all().encode('utf-8')
+            data = raw_data.split("\r")
+
+            return data[1]
+
+        self.send_raw_command(f"{command} {argument}")
         result = get_data(self.ser)
+
         return result
