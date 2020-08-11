@@ -92,3 +92,9 @@ class RoboteqHandler:
             print(e)
             print("\n\n")
         
+
+    def read_value(self, command: str = "", argument: int = 1) -> None:
+        """
+        Reads value from the controller
+        """
+        
