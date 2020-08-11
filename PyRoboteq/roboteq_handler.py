@@ -97,4 +97,13 @@ class RoboteqHandler:
         """
         Reads value from the controller
         """
+        def get_data(serial):
+            data = ""
+            while serial.inWaiting() > 0:
+                data += str(serial.read())
+            return data
         
+        get_data(self.ser)
+        self.send_param_command(command, argument)
+        result = get_data(self.ser)
+        return result
