@@ -93,7 +93,7 @@ class RoboteqHandler:
             print("\n\n")
         
 
-    def read_value(self, command: str = "", argument: int = 1) -> None:
+    def read_value(self, command: str = "", argument: int = 1) -> str:
         """
         Reads value from the controller
         """
