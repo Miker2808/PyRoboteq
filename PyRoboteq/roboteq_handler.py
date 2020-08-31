@@ -1,5 +1,6 @@
 import serial
 import time
+# message
 class RoboteqHandler:
     """
     Create a roboteq device object for communication, read the README for more information
