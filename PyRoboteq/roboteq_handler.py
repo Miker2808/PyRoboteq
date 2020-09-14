@@ -94,8 +94,17 @@ class RoboteqHandler:
         result = get_data(self.ser)
         result = result.decode()
         result = result.split("\r")
-
-        return result[1]
+        try:
+            return_result = result[1]
+            return result[1]
+        except IndexError as e:
+            debug_return = "DEBUG MODE: Received faulty message, ignoring.."
+            if self.exit_on_interrupt == True:
+                quit()
+            if self.debug_mode == True:
+                debug_return = "DEBUG MODE: Received faulty message, ignoring"
+                print(debug_return)
+            return debug_return
 
     def dual_motor_control(self, left_motor: int = 0, right_motor: int = 0) -> None:
         """
