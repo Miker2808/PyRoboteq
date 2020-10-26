@@ -5,8 +5,9 @@ Python library to ease with roboteq motor driver programming
 
 ## Installation
 
-PyRoboteq is currently still in development and is not yet available in PyPi (similar libraries are available).
-To install the library you'll have to simply download the files and import them from their path
+You can install them using 
+```pip install PyRoboteq```
+Or, just clone the repository and import from path
 
 
 ## Requirements 
