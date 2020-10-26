@@ -36,7 +36,7 @@ Then what you will have to do is to simply write a command to the motors, if you
 ```python
 if __name__ == "__main__":
     while True:
-        time.sleep(0.1) # to avoid write timeout, limit the frequency of sending the signal
+        time.sleep(0.1) # to avoid write timeout, limit the frequency of sending the signal (not needed anymore as of new release)
         controller.dual_motor_control(100, 100) # Send command to the controller
 ```
 

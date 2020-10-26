@@ -102,7 +102,6 @@ class RoboteqHandler:
             if self.exit_on_interrupt == True:
                 quit()
             if self.debug_mode == True:
-                debug_return = "DEBUG MODE: Received faulty message, ignoring"
                 print(debug_return)
             return debug_return
 
