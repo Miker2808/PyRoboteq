@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="PyRoboteq", # Replace with your own username
+    name="PyRoboteq",
     version="0.0.9",
     author="miker2808",
     author_email="miker2808@gmail.com",
