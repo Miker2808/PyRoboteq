@@ -51,5 +51,5 @@ As you can notice, you do not have to use all the arguments, check the manual to
 For more information please refer to the manual listed [here](https://www.roboteq.com/docman-list/motor-controllers-documents-and-files/documentation/user-manual/272-roboteq-controllers-user-manual-v17/file)
 
 ## License
-[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
+[MIT License](https://choosealicense.com/licenses/mit/)
 
