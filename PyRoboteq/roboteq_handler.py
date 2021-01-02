@@ -4,6 +4,8 @@ import time
 class RoboteqHandler:
     """
     Create a roboteq device object for communication, read the README for more information
+    param: exit_on_interrupt - exits program with any error received (recommended for debugging)
+    param: debug_mode - prints every data sent to the controller and received from the controller, doesnt stop the program.
     """
 
     def __init__(self, exit_on_interrupt = False, debug_mode = False):
@@ -17,6 +19,8 @@ class RoboteqHandler:
     def connect(self, port: str, baudrate: int = 115200) -> bool:
         """
         Attempt to establish connection with the controller
+        If the attempt fails, the method will return False otherwise, True.
+
         """
         self.port = port
         self.baudrate = baudrate
@@ -26,7 +30,7 @@ class RoboteqHandler:
             print(f"EXIT ON INTERRUPT: {self.exit_on_interrupt}")
             time.sleep(1)
 
-        try:
+        try: # attempt to create a serial object and check its status
             self.ser = serial.Serial(
                 port = self.port,
                 baudrate = self.baudrate,
@@ -46,7 +50,6 @@ class RoboteqHandler:
                 print("\n")
             self.is_alive = False
             
-        
         return self.is_alive
 
     def send_raw_command(self, str_command: str = "") -> None:
@@ -95,10 +98,10 @@ class RoboteqHandler:
         result = result.decode()
         result = result.split("\r")
         try:
-            return_result = result[1]
             return result[1]
-        except IndexError as e:
-            debug_return = "DEBUG MODE: Received faulty message, ignoring.."
+        
+        except IndexError: # will raise index error as sometimes the controller will return an odd answer, its rare, so its simply ignored.
+            debug_return = "DEBUG MODE: Received faulty message, ignoring..."
             if self.exit_on_interrupt == True:
                 quit()
             if self.debug_mode == True:
@@ -130,11 +133,18 @@ class RoboteqHandler:
             if self.debug_mode == True:
                 print("DEBUG MODE: Failed to construct a message, read the exception error below:")
                 print(e)
+                print(f"Received message: {response}")
                 print("\n")
             if self.exit_on_interrupt == True:
                 quit()
 
     def read_value(self, command: str = "", parameter = "") -> str:
+        """
+        Constructs a message and sends it to the controller.
+        param: command (str)
+        param: parameter (str/int)
+        returns: answer from the controller, data from request commands, or echo from action commands.
+        """
         request = f"{command} [{parameter}]"
         response = self.request_handler(request)
         return response

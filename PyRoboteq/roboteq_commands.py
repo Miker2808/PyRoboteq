@@ -1,7 +1,7 @@
 # This file contains the full list of the commands used by the SDC21** motor driver series
 # Each constant will be used as a message receiver or sender parameter (Send speed, read speed, etc..)
 # Please refer to the roboteq official manual for more information: https://www.roboteq.com/docman-list/motor-controllers-documents-and-files/documentation/user-manual/272-roboteq-controllers-user-manual-v17/file
-# IMPORTANT: These constants are for serial use
+# NOTICE: These constants are for serial use
 
 
 # 
@@ -66,7 +66,7 @@ READ_VOLTS = "?V" # Read voltage measured
 # Contains few commands that are used occasionally to peform maintenance functions
 # Use these command carefully please!
 # Please view the manual for more information (page:258)
-# Beware: some commands require safety key - the safety key is: 321654987
+# Beware: some commands require safety key - the safety key is: 321654987 (You insert the key as a parameter to the command)
 
 CLMOD = "%CLMOD" # Used for motor/sensor setup
 CLRST = "%CLRST" # used to factory reset to factory defaults, include a safety key

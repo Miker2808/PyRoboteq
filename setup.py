@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="PyRoboteq",
-    version="0.0.9",
-    author="miker2808",
+    version="0.1.0",
+    author="Michael Pogodin",
     author_email="miker2808@gmail.com",
     description="Python library to ease with roboteq motor driver programming",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Miker2808/PyRoboteq",
-    packages=setuptools.find_packages(),
+    packages=['pyserial'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
