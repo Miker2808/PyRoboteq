@@ -12,6 +12,7 @@ Or, just clone the repository and import from path 'PyRoboteq' directory
 ## Requirements 
 
 **Important:** this library was tested currently only on SDC2130 motor controller, and will probably support only the SDC21** series
+
 To make sure your motor controller will work, you'll need the following:
 
 * Installed PySerial module (imported as 'serial')
@@ -19,7 +20,7 @@ To make sure your motor controller will work, you'll need the following:
 
 
 ## Usage
-
+### Setup
 Import the PyRoboteq package
 ```python
 from PyRoboteq import RoboteqHandler
@@ -29,6 +30,9 @@ To use the commands add the following line
 ```python
 from PyRoboteq import roboteq_commands as cmds
 ```
+
+### Connection
+
 To connect to the controller you'll have to make a controller object, and additionally connect to it.
 The ```RoboteqHandler()``` constructor additionally supports two parameters which can ease with the development.
 * The debug_mode parameter, which prints out any information sent or received to and from the controller, and any exceptions received.
@@ -45,6 +49,8 @@ works both on linux and windows.
 ```python
 is_connected = controller.connect("COM9") # connect to the controller (COM9 is an example for windows)
 ```
+
+### Sending Commands
 
 Then what you will have to do is to simply write a command to the motors, if you have the SDC2130 dual series, you'll be able to communication with 2 motors
 ```python
@@ -66,6 +72,8 @@ Even though ```send_command``` supports this, you can more preferablly send a ra
 controller.send_raw_command("!M 200 200) # additionaly, you can send a raw string.
 ```
 
+### Reading Commands
+
 Sending commands to the controller is cool, but it would be much cooler, if the controller could also return you its very beneficial data.
 For this, you can use the ```read_value()``` method. The method has 2 parameters, the read command, and optionally a parameter.
 some commands will give you multiple data, like controller voltage, which will give you voltage from 3 different points of the controller.
@@ -81,6 +89,11 @@ Same command can be sent using a raw string:
 controller_volts = controller.read_value("?V", 2)
 >>> "V=16"
 ```
+
+## Examples
+The PyRoboteq library comes with little examples which you can run right away.
+
+To access the examples head to the "examples" directory inside the "PyRoboteq" directory.
 
 ## More information
 For more information please refer to the manual listed [here](https://www.roboteq.com/docman-list/motor-controllers-documents-and-files/documentation/user-manual/272-roboteq-controllers-user-manual-v17/file)
