@@ -69,7 +69,7 @@ As you can notice, you do not have to use all the arguments, check the manual to
 
 Even though ```send_command``` supports this, you can more preferablly send a raw string to the controller using the ```send_raw_command()``` method.
 ```python
-controller.send_raw_command("!M 200 200) # additionaly, you can send a raw string.
+controller.send_raw_command("!M 200 200") # additionaly, you can send a raw string.
 ```
 
 ### Reading Commands
@@ -82,7 +82,7 @@ It is recommended that you read the manual to see what each value means.
 controller_volts = controller.read_value(cmds.READ_VOLTS) # receive voltages from the controller
 >>> "V= 12:16:5" # Without a parameter, the controller returns 3 channels, (internal, battery, 5v output) respectively
 controller_volts = controller.read_value(cmds.READ_VOLTS, 2)
->>> "V= 16" # This way, the controller will return only value of channel 2 (battery voltage)
+>>> "V= 16" # This way, the controller will return only the value of channel 2 (battery voltage)
 ```
 Same command can be sent using a raw string:
 ```python
