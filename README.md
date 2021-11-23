@@ -11,7 +11,8 @@ Or, just clone the repository and import from the 'PyRoboteq' directory
 
 ## Requirements 
 
-**Important:** this library was tested currently only on SDC2130 motor controller, and will probably support only the SDC21** series
+**Tested Controllers**: SDC2130, SBL2360T
+The library may work on additional roboteq controllers but it is not guaranteed
 
 To make sure your motor controller will work, you'll need the following:
 
