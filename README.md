@@ -1,24 +1,25 @@
-# PyRoboteq
+# PyRoboteq [![Downloads](https://pepy.tech/badge/pyroboteq)](https://pepy.tech/project/pyroboteq)
 
-Python library to ease with roboteq motor driver programming
+Python library to ease with roboteq motor controllers programming
 
 
 ## Installation
 
-You can install them using  ```pip install PyRoboteq``` 
+Install the python package using: ```pip install PyRoboteq``` 
 
-Or, just clone the repository and import from the 'PyRoboteq' directory
+Alternatively, you can clone this repository and import from the "PyRoboteq" directory.
 
 ## Requirements 
 
 **Tested Controllers**: SDC2130, SBL2360T
-The library may work on additional roboteq controllers but it is not guaranteed
 
-To make sure your motor controller will work, you'll need the following:
+The library *may* work with additional roboteq controllers.
+
+In order to work with your motor controller, you'll need the following:
 
 * Installed PySerial module (imported as 'serial')
 * Connection to the motor controller via serial communication (USB)
-
+* Python 3.6 and above is recommended.
 
 ## Usage
 ### Setup
@@ -26,17 +27,17 @@ Import the PyRoboteq package
 ```python
 from PyRoboteq import RoboteqHandler
 ```
-The PyRoboteq library includes a set of commands which you can use, including a comment describing the use of the command (Work in Progress).
-To use the commands add the following line
+The PyRoboteq library includes a set of commands which you can use, including a comment describing the use of the command.
+To use the commands add the following line:
 ```python
 from PyRoboteq import roboteq_commands as cmds
 ```
 
 ### Connection
 
-To connect to the controller you'll have to make a controller object, and additionally connect to it.
-The ```RoboteqHandler()``` constructor additionally supports two parameters which can ease with the development.
-* The debug_mode parameter, which prints out any information sent or received to and from the controller, and any exceptions received.
+In order to communicate with the controller, you will need to create a RoboteqHandler object, and then establish a connection with it.
+The ```RoboteqHandler()``` class additionally supports two parameters which can ease with the development.
+* The debug_mode parameter, which prints out any information sent or received to and from the controller, including any exceptions received.
 * The ```exit_on_interrupt```. By default, the pyroboteq will ignore any exceptions to make sure minor interruptions wont crash your robot.
 this can be averted by adding the ```exit_on_interrupt``` parameter to exit when any interruption is received.
 
@@ -53,7 +54,7 @@ is_connected = controller.connect("COM9") # connect to the controller (COM9 is a
 
 ### Sending Commands
 
-Afterwards, what you will have to do is to simply write a command to the motors, if you have the SDC2130 dual series, you'll be able to communicat with 2 motors
+Afterwards, what you will have to do is to simply write a command to the motors, if you have the SDC2130 dual series, you'll be able to communicate with 2 motors 
 ```python
 if __name__ == "__main__":
     while True:
@@ -69,9 +70,9 @@ controller.send_command(SET_SPEED, 1, 1000) # send 'set speed' command to channe
 As you can notice, you do not have to use all the arguments, check the manual to see how many arguments you need to use.
 The library will construct a command depending on how many arguments you give.
 
-Even though ```send_command``` supports this, you can more preferablly send a raw string to the controller using the ```send_raw_command()``` method.
+Even though ```send_command``` supports using raw strings, you can more preferablly send a raw string to the controller using the ```send_raw_command()``` method.
 ```python
-controller.send_raw_command("!M 200 200") # additionaly, you can send a raw string.
+controller.send_raw_command("!M 200 200") # send a raw string.
 ```
 
 ### Reading Commands
@@ -98,7 +99,7 @@ The PyRoboteq library comes with little examples which you can run right away.
 To access the examples head to the "examples" directory inside the "PyRoboteq" directory.
 
 ## More information
-For more information please refer to the manual listed [here](https://www.roboteq.com/docman-list/motor-controllers-documents-and-files/documentation/user-manual/272-roboteq-controllers-user-manual-v17/file)
+For more information and manuals, please refer to the official Roboteq website.
 
 ## License
 [MIT License](https://choosealicense.com/licenses/mit/)
