@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="PyRoboteq",
-    version="0.1.0",
+    version="0.1.1",
     author="Michael Pogodin",
     author_email="miker2808@gmail.com",
     description="Python library to ease with roboteq motor driver programming",
