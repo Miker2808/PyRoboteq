@@ -1,6 +1,6 @@
 import serial
 import time
-# message
+
 class RoboteqHandler:
     """
     Create a roboteq device object for communication, read the README for more information
@@ -20,7 +20,8 @@ class RoboteqHandler:
         """
         Attempt to establish connection with the controller
         If the attempt fails, the method will return False otherwise, True.
-
+        port: port name (ex: COM1)
+        baudrate: baudrate, defaults 1115200
         """
         self.port = port
         self.baudrate = baudrate
@@ -54,8 +55,8 @@ class RoboteqHandler:
 
     def send_raw_command(self, str_command: str = "") -> None:
         """
-        Send a raw string command, the library will handle sending the command, but how you write it
-        is up to you.
+        Send a raw string command to the controller. has to match known command strings.
+        [refer to the controllers manual or "roboteq_commands.py"]
         """
         raw_command = f"{str_command}+\r"
         try:
@@ -73,7 +74,10 @@ class RoboteqHandler:
         
     def request_handler(self, request: str = "") -> str:
         """
-        Sends a command and a parameter, 
+        Sends a command as string.
+        returns controller response.
+        NOTE: This method acts as a "generic" function for communication.
+        it is recommended to use "send_command" and "read_value" methods instead.
         """
         def get_data(serial):
             raw_data = b''
@@ -102,10 +106,11 @@ class RoboteqHandler:
         
         except IndexError: # will raise index error as sometimes the controller will return an odd answer, its rare, so its simply ignored.
             debug_return = "DEBUG MODE: Received faulty message, ignoring..."
-            if self.exit_on_interrupt == True:
-                quit()
             if self.debug_mode == True:
                 print(debug_return)
+            if self.exit_on_interrupt == True:
+                quit()
+            
             return debug_return
 
     def dual_motor_control(self, left_motor: int = 0, right_motor: int = 0) -> None:
@@ -115,6 +120,7 @@ class RoboteqHandler:
         Effective for doing Pivot drive and running track based robots
         left_motor: integer from -1000 to 1000
         right_motor: integer from -1000 to 1000
+        NOTE: can be used as an example on how to wrap "request_handler" to suit your needs.
         """
         raw_command = f"!M {left_motor} {right_motor} "
         self.request_handler(raw_command)
