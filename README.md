@@ -1,4 +1,4 @@
-# PyRoboteq [![Downloads](https://pepy.tech/badge/pyroboteq)](https://pepy.tech/project/pyroboteq)
+# PyRoboteq [![Downloads](https://static.pepy.tech/badge/PyRoboteq)](https://pepy.tech/project/PyRoboteq)
 
 Python library to ease with roboteq motor controllers programming
 
@@ -104,3 +104,5 @@ For more information and manuals, please refer to the official Roboteq website.
 ## License
 [MIT License](https://choosealicense.com/licenses/mit/)
 
+
+Special thanks to everyone who contributed to this little project
