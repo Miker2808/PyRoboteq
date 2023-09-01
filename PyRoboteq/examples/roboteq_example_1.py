@@ -13,17 +13,17 @@ if __name__ == "__main__":
             drive_speed_motor_one = 200
             drive_speed_motor_two = 200
             
-        else if keyboard.is_pressed('d'):
+        elif keyboard.is_pressed('d'):
             print("D pressed")
             drive_speed_motor_one = 200
             drive_speed_motor_two = 200
 
-        else if keyboard.is_pressed('x'):
+        elif keyboard.is_pressed('x'):
             print("X is pressed")
             drive_speed_motor_one = -200
             drive_speed_motor_two = 200
 
-        else if keyboard.is_pressed('c'):
+        elif keyboard.is_pressed('c'):
             print("C is pressed")
             drive_speed_motor_one = 200
             drive_speed_motor_two = -200
