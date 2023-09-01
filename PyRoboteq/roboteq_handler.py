@@ -20,7 +20,7 @@ class RoboteqHandler:
         """
         Attempt to establish connection with the controller
         If the attempt fails, the method will return False otherwise, True.
-        port: port name (ex: COM1)
+        port: port name (ex: COM1 (windows), /dev/ttyACM0 (linux))
         baudrate: baudrate, defaults 1115200
         """
         self.port = port
